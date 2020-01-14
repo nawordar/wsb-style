@@ -1,0 +1,81 @@
+\ProvidesFile{wsb.bbx}[2020/01/11 WSB bibliography style]
+
+\RequireBibliographyStyle{standard}
+
+\DeclareFieldFormat*{title}{#1}
+
+\DefineBibliographyStrings{polish}{%
+  % pages     = {ss.},
+  andothers = {i~inn.},
+}
+
+% \newskip\sentskip
+% \sentskip=\fontdimen2\font plus \fontdimen3\font minus \fontdimen4\font
+% \advance\sentskip by \fontdimen7\font
+
+% \newcommand{\insentspace}{\hskip \sentskip}
+
+\DeclareNameFormat{author-label}{%
+  \ifmorenames%
+    {\ifthenelse{\value{listcount}=1}
+      {\namepartfamily{} \bibstring{andothers},}{}}
+    {\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}%
+  % \usebibmacro{name:andothers}%
+  \ifthenelse{\value{listcount}=\value{liststop}}
+    {\addcomma\space\printfield{year}%
+      \iffieldundef{namea}
+        {\addcomma\space\printfield{pages}}
+        {\addcomma\space\bibstring{pages}\printfield{namea}}}{}%
+}
+
+\DeclareNameFormat{author}{%
+  \namepartfamily%
+  \ifdefvoid{\namepartgiven}
+    {}{\addcomma\space\namepartgiveni}%
+  \ifthenelse{\value{listcount}=\value{liststop}}
+    {}{\addcomma\space}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Label and general bibliography formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defbibenvironment{bibliography}{%
+  \list{%
+    (\printnames[author-label][-2]{author})\enspace---\enspace%
+  }{%
+    \setlength{\labelwidth}{\labelnumberwidth}%
+    \setlength{\leftmargin}{\labelwidth}%
+    \setlength{\labelsep}{0pt}%
+    \addtolength{\leftmargin}{\labelsep}%
+    \setlength{\itemsep}{\bibitemsep}%
+    \setlength{\parsep}{\bibparsep}}%
+  \renewcommand*{\makelabel}[1]{\hss##1}
+}{\endlist}{\item}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography driver definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareBibliographyDriver{book}{%
+  \printnames{author}%
+  \setunit{\addcomma\addspace}%
+  \printfield{year}%
+  \newunit\newblock%
+  \printfield{title}%
+  \newunit\newblock%
+  \printlist{location}%
+  \setunit{\addcolon\addspace}%
+  \printlist{publisher}%
+  \finentry}
+
+\DeclareBibliographyDriver{inbook}{%
+  \printnames{author}%
+  \setunit{\addcomma\addspace}%
+  \printfield{year}%
+  \newunit\newblock%
+  \printfield{title}%
+  \newunit\newblock%
+  \printlist{location}%
+  \setunit{\addcolon\addspace}%
+  \printlist{publisher}%
+  \finentry}
