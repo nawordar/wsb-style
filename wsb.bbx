@@ -2,12 +2,13 @@
 
 \RequireBibliographyStyle{standard}
 
-\DeclareFieldFormat*{title}{#1}
-
 \DefineBibliographyStrings{polish}{%
   % pages     = {ss.},
   andothers = {i~inn.},
 }
+
+\DeclareFieldFormat*{title}{#1}
+\DeclareFieldFormat*{chapter}{#1}
 
 % \newskip\sentskip
 % \sentskip=\fontdimen2\font plus \fontdimen3\font minus \fontdimen4\font
@@ -15,17 +16,26 @@
 
 % \newcommand{\insentspace}{\hskip \sentskip}
 
+\DeclareDatamodelFields[type=field, datatype=range, skipout=false]{pagesref}
+\DeclareFieldFormat{pagesref}{\mkpageprefix{#1}}
+
+\DeclareDatamodelFields[type=field, datatype=range, skipout=false]{thiscite}
+\DeclareFieldFormat{thiscite}{\mkpageprefix{#1}}
+
+\def\printname{\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+
 \DeclareNameFormat{author-label}{%
+  % If there are more than three names, print only the first one
   \ifmorenames%
     {\ifthenelse{\value{listcount}=1}
-      {\namepartfamily{} \bibstring{andothers},}{}}
-    {\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}%
-  % \usebibmacro{name:andothers}%
+      {\printname{} \bibstring{andothers},}
+      {}}
+    {\printname{}}%
   \ifthenelse{\value{listcount}=\value{liststop}}
     {\addcomma\space\printfield{year}%
-      \iffieldundef{namea}
-        {\addcomma\space\printfield{pages}}
-        {\addcomma\space\bibstring{pages}\printfield{namea}}}{}%
+      \iffieldundef{thiscite}{}
+        {\addcomma\space\printfield{thiscite}}}
+    {}%
 }
 
 \DeclareNameFormat{author}{%
@@ -34,6 +44,15 @@
     {}{\addcomma\space\namepartgiveni}%
   \ifthenelse{\value{listcount}=\value{liststop}}
     {}{\addcomma\space}%
+}
+
+\DeclareNameFormat{editor}{%
+  \namepartfamily%
+  \ifdefvoid{\namepartgiven}{}
+    {\addcomma\space\namepartgiveni}%
+  \ifthenelse{\value{listcount}=\value{liststop}}
+    { (\bibstring{editor})}
+    {\addcomma\space}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,9 +92,17 @@
   \setunit{\addcomma\addspace}%
   \printfield{year}%
   \newunit\newblock%
+  \printfield{chapter}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{in:}%
+  \printnames{editor}%
+  \setunit{\addcomma\addspace}%
   \printfield{title}%
   \newunit\newblock%
   \printlist{location}%
   \setunit{\addcolon\addspace}%
   \printlist{publisher}%
+  \iffieldundef{pages}{}
+    {\setunit{\addcomma\addspace}%
+      \printfield{pages}}
   \finentry}
