@@ -3,7 +3,7 @@ Klasa i styl bibliografii pracy inżynierskiej dla Wyższej Szkoły Bankowej w G
 [Przykładowy plik pdf wyrenderowany z użyciem tego stylu](https://github.com/nawordar/wsb-style/blob/master/sample/sample.pdf).
 
 ## Notice
-As of now, only Polish is supported. The standards for English language theses are not clearly defined yet.
+As of now, only Polish is supported. The standards for English language theses are still not clearly defined.
 
 ## Instalacja
 Do użycia tego stylu wymagany jest silnik LaTeXa LuaTeX.\
