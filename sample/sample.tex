@@ -18,7 +18,7 @@
 \addbibresource{sample.bib}
 
 % Paczka do generowania przykładowego tekstu
-\usepackage{blindtext}
+\usepackage{bredzenie}
 
 \usepackage[prevent-all]{widows-and-orphans}
 
@@ -52,10 +52,16 @@
 %%%%%%%%%%%%%%
 % Treść pracy
 %%%%%%%%%%%%%%
-\blinddocument{}
+\chapter{Przykładowy rozdział}
+\bredzenie{1-5}
+\section{Przykładowy podrozdział}
+\bredzenie{6-10}
 
 \chapter{Font o stałej szerokości}
- {\ttfamily\blindtext}
+Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy wyrównać do lewej strony.
+\begin{flushleft}
+    \ttfamily\bredzenie{101-104}
+\end{flushleft}
 
 \chapter{Cytowanie}
 
