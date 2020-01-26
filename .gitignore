@@ -281,3 +281,4 @@ TSWLatexianTemp*
 
 *.pdf
 sample.bib
+!sample/sample.pdf
