@@ -1,0 +1,5 @@
+\ProvidesFile{wsb.dbx}[2020/01/24 WSB bib/cite style data model]
+
+\DeclareDatamodelFields[type=field, datatype=range, skipout=false]{thiscite}
+
+\DeclareDatamodelEntryfields{thiscite}

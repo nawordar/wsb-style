@@ -1,0 +1,107 @@
+\documentclass[]{wsbthesis}
+
+
+\usepackage[english, polish]{babel}
+\usepackage{csquotes}
+
+% Ustawienia dotyczące bibliografii
+\usepackage[
+	style=wsb,      % Ustaw styl bibliografii
+	block=space,    % Zwiększ odstępy w bibliografii
+	sortcites=true, % Sortuj pozycje zamiast układać je w kolejności występowania
+	sorting=nty,    % Name-title-year — Imiona-tytuł-rok
+	maxnames=5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
+]{biblatex}
+\addbibresource{sample.bib}
+
+% Paczka do generowania przykładowego tekstu
+\usepackage{blindtext}
+
+\usepackage[prevent-all]{widows-and-orphans}
+
+% Dodaj wsparcie hiperlinków dla generowanego pdfa
+\usepackage{bookmark}
+\hypersetup{hidelinks}
+
+% Dane do strony tytułowej
+\author{Jan Kowalski}
+\title{Projekt pracy inżynierskiej}
+\university{Wyższa Szkoła Bankowa w Gdańsku}
+\faculty{Wydział Ekonomii i Zarządzania w Gdyni}
+\degree{Informatyka}
+\albumnumber{12345}
+% Praca napisana pod kierunkiem…
+\supervisorgenitive{dr inż.\ Radowida Maciejewskiego}
+\wyear{2020}
+
+
+\begin{document}
+
+% Jeśli adresy url nie mają być drukowane w foncie monospace
+% \urlstyle{rm}
+
+\maketitle{}
+\printtableofcontent{}
+
+% Numeruj strony od tego miejsca
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%
+% Treść pracy
+%%%%%%%%%%%%%%
+\blinddocument{}
+
+\chapter{Font o stałej szerokości}
+ {\ttfamily\blindtext}
+
+\chapter{Cytowanie}
+
+\begin{enumerate}
+    \item Książka
+          \begin{enumerate}
+              \item Książka nr 1 \autocite{kosieradzka_2012}
+              \item Książka nr 2 \autocite{szoltysek_2016}
+              \item Książka nr 3 \autocite{mateos_rosenberg_2011}
+              \item Książka nr 4 \autocite{banaszak_2016}
+          \end{enumerate}
+
+    \item Rozdział w~książce \autocite{leszek_2016}
+
+    \item Artykuł w czasopiśmie
+          \begin{enumerate}
+              \item Artykuł nr 1 \autocite{zawila_2016}
+              \item Artykuł nr 2 \autocite{kisman_2014}
+          \end{enumerate}
+
+    \item Artykuł z czasopisma dostępnego przez sieć Internet \autocite{kompa_2016}
+
+    \item Artykuły i raporty publikowane w sieci Internet, w których wskazany jest autor
+          \begin{enumerate}
+              \item Artykuł nr 1 \autocite{panetta_2017}
+              \item Artykuł nr 2 \autocite{beauchamp_2017}
+          \end{enumerate}
+
+    \item Artykuły i raporty publikowane w sieci Internet, w których nie ma autora (autorem jest instytucja publikująca)
+          \begin{enumerate}
+              \item Artykuł nr 1 \autocite{gus_2016}
+              \item Artykuł nr 2 \autocite{gus_2016a}
+          \end{enumerate}
+
+    \item Źródła internetowe (blogi, video, strony WWW)
+          \begin{enumerate}
+              \item Źródło nr 1 \autocite{gpw_2018}
+              \item Źródło nr 2 \autocite{mit_2018}
+              \item Źródło nr 3 \autocite{oreilly_2017}
+              \item Źródło nr 4 \autocite{easypark_2017}
+          \end{enumerate}
+
+    \item Akty prawne
+          \begin{enumerate}
+            \item Akt nr 1 \autocite{dzu_2009_1_3}
+            \item Akt nr 2 \autocite{2010_13_ue_1}
+          \end{enumerate}
+\end{enumerate}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

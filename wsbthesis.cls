@@ -57,16 +57,12 @@
 % Set main font
 \RequirePackage{fontspec}
 \setmainfont[Ligatures=TeX]{TeX Gyre Termes}
-% \setmonofont{Liberation Mono}
+% \setmonofont{TeX Gyre Cursor}
 % \setmainfont[Ligatures=TeX]{Times New Roman}
 
 % Set listings font
 \RequirePackage{listings}
 \lstset{basicstyle=\footnotesize\fontspec{Cascadia Code}}
-
-% Start a new page before each section title
-% \RequirePackage{titlesec}
-% \newcommand{\sectionbreak}{\clearpage}
 
 % Format chapter and section title – Source: https://tex.stackexchange.com/a/1477/175096
 \RequirePackage[compact]{titlesec}
@@ -110,6 +106,9 @@
 
 % Automatic \parbox
 \RequirePackage{pbox}
+
+% Provides \setstretch command
+\RequirePackage{setspace}
 
 \renewcommand{\maketitle}{%
 	{\setstretch{1.0}%

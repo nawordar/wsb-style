@@ -26,12 +26,16 @@ makelocalinstall:
 	PACKAGE_DIR="$$PATHTEXHOME/tex/latex/$(PACKAGE)/" ;\
 	\
 	echo "Creating folders if they don't exist" ;\
-	mkdir -p		"$$PACKAGE_DIR" ;\
+	mkdir -p			"$$PACKAGE_DIR" ;\
 	cp $(CLASS).cls 	"$$PACKAGE_DIR" ;\
 	\
-	mkdir -p        	"$$PACKAGE_DIR/bbx/" ;\
+	mkdir -p        		"$$PACKAGE_DIR/bbx/" ;\
 	cp $(BIBLIOGRAPHY).bbx 	"$$PACKAGE_DIR/bbx" ;\
 	\
-	mkdir -p        	"$$PACKAGE_DIR/cbx/" ;\
+	mkdir -p        		"$$PACKAGE_DIR/cbx/" ;\
+	cp $(BIBLIOGRAPHY).cbx 	"$$PACKAGE_DIR/cbx" ;\
+	\
+	mkdir -p        		"$$PACKAGE_DIR/dbx/" ;\
+	cp $(BIBLIOGRAPHY).dbx 	"$$PACKAGE_DIR/dbx" ;\
 	\
 	echo "$(OK_COLOR)Installation finished$(NO_COLOR)" ;\

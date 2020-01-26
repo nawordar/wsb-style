@@ -1,0 +1,39 @@
+\ProvidesFile{wsb.cbx}[2020/01/24 WSB citation style]
+
+\RequireCitationStyle{authoryear}
+
+\ExecuteBibliographyOptions{autocite=inline}
+
+\DeclareDelimFormat{nameyeardelim}{,\space}
+
+\newbibmacro*{cite:labelname}{\printnames[][-2]{labelname}}
+
+\renewbibmacro*{cite:labeldate+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printlabeldateextra}}
+
+\renewbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \iffieldundef{shorthand}
+      {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+        {\usebibmacro{cite:label}%
+          \setunit{\printdelim{nonameyeardelim}}}
+        {\usebibmacro{cite:labelname}%
+          \setunit{\printdelim{nameyeardelim}}}%
+      \usebibmacro{cite:labeldate+extradate}}
+      {\usebibmacro{cite:shorthand}}}}
+
+\DeclareCiteCommand{\cite}[\mkbibbrackets]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibbrackets]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}

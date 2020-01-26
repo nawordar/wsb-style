@@ -1,31 +1,42 @@
 \ProvidesFile{wsb.bbx}[2020/01/11 WSB bibliography style]
 
-\RequireBibliographyStyle{standard}
 
-\DeclareFieldFormat*{title}{#1}
+\RequireBibliographyStyle{authortitle}
 
 \DefineBibliographyStrings{polish}{%
   % pages     = {ss.},
   andothers = {i~inn.},
+  number = {Nr},
+  urlseen = {dostęp},
 }
 
-% \newskip\sentskip
-% \sentskip=\fontdimen2\font plus \fontdimen3\font minus \fontdimen4\font
-% \advance\sentskip by \fontdimen7\font
 
-% \newcommand{\insentspace}{\hskip \sentskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Field formats and declarations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareFieldFormat*{title}{#1}
+\DeclareFieldFormat*{shorthand}{#1}
+\DeclareFieldFormat*{journaltitle}{#1}
+\DeclareFieldFormat*{chapter}{#1}
+\DeclareFieldFormat*{number}{\bibstring{number}\space#1}
 
-\DeclareNameFormat{author-label}{%
+\DeclareFieldFormat{url}{<\url{#1}>}
+\DeclareFieldFormat{urldate}{\mkbibbrackets{\bibstring{urlseen}\space#1}}
+
+\DeclareFieldFormat{thiscite}{\mkpageprefix{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Introcite and general bibliography formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\printname{\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+\DeclareNameFormat{labelname}{%
+  % If there are more than three names, print only the first one
   \ifmorenames%
     {\ifthenelse{\value{listcount}=1}
-      {\namepartfamily{} \bibstring{andothers},}{}}
-    {\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}%
-  % \usebibmacro{name:andothers}%
-  \ifthenelse{\value{listcount}=\value{liststop}}
-    {\addcomma\space\printfield{year}%
-      \iffieldundef{namea}
-        {\addcomma\space\printfield{pages}}
-        {\addcomma\space\bibstring{pages}\printfield{namea}}}{}%
+      {\printname{} \bibstring{andothers}}
+      {}}
+    {\printname{}}%
 }
 
 \DeclareNameFormat{author}{%
@@ -34,48 +45,130 @@
     {}{\addcomma\space\namepartgiveni}%
   \ifthenelse{\value{listcount}=\value{liststop}}
     {}{\addcomma\space}%
+  \usebibmacro{name:andothers}%
+}
+\DeclareNameFormat{editor}{%
+  \namepartfamily%
+  \ifdefvoid{\namepartgiven}{}
+    {\addcomma\space\namepartgiveni}%
+  \ifthenelse{\value{listcount}=\value{liststop}}
+    {\space\mkbibparens{\bibstring{editor}}}
+    {\addcomma\space}%
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Label and general bibliography formatting
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\defbibenvironment{bibliography}{%
-  \list{%
-    (\printnames[author-label][-2]{author})\enspace---\enspace%
-  }{%
-    \setlength{\labelwidth}{\labelnumberwidth}%
-    \setlength{\leftmargin}{\labelwidth}%
-    \setlength{\labelsep}{0pt}%
-    \addtolength{\leftmargin}{\labelsep}%
-    \setlength{\itemsep}{\bibitemsep}%
-    \setlength{\parsep}{\bibparsep}}%
-  \renewcommand*{\makelabel}[1]{\hss##1}
-}{\endlist}{\item}
+\newbibmacro*{bbx:introcite}{%
+  \usebibmacro{cite}%
+  \iffieldundef{thiscite}{}
+    {\addcomma\space\printfield{thiscite}}%
+}
+
+\newcommand*{\extblx@introcite@init}{%
+  \iftoggle{blx@citation}
+    {}
+    {\togglefalse{blx@bibliography}%
+     \toggletrue{blx@citation}}%
+  \delimcontext{bbx@introcite}%
+  \csuse{blx@hook@cite}%
+  \csuse{blx@hook@citekey}%
+  \DeclareFieldFormat{bibhyperref}{##1}%
+  \undef\cbx@lasthash
+  \undef\cbx@lastyear
+  \citetrackerfalse\pagetrackerfalse\backtrackerfalse{}
+  \defcounter{maxnames}{\blx@maxcitenames}%
+  \defcounter{minnames}{\blx@mincitenames}%
+}
+
+\newbibmacro{introcite:typeset}{%
+  \begingroup
+    \extblx@introcite@init
+    \printtext[bbx@introcite]{\usebibmacro{bbx:introcite}}%
+  \endgroup
+}
+
+\newbibmacro{introcite:plain}{%
+  \usebibmacro{introcite:typeset}%
+  \printunit*{\introcitepunct}}
+
+\DeclareFieldFormat{bbx@introcite}{\mkbibparens{#1}}
+\newcommand*{\introcitepunct}{\enspace---\enspace}%
+
+\renewbibmacro{begentry}{%
+  \usebibmacro{introcite:plain}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Bibliography driver definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareBibliographyDriver{book}{%
-  \printnames{author}%
-  \setunit{\addcomma\addspace}%
-  \printfield{year}%
-  \newunit\newblock%
-  \printfield{title}%
-  \newunit\newblock%
+\newbibmacro*{location+publisher+pages}{%
   \printlist{location}%
   \setunit{\addcolon\addspace}%
   \printlist{publisher}%
-  \finentry}
+  \iffieldundef{pages}{}
+    {\setunit{\addcomma\addspace}%
+      \printfield{pages}}%
+}
+
+\newbibmacro*{author+year}{%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printdate%
+}
+
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author+year}%
+  \newunit\newblock%
+  \printfield{title}%
+  \newunit\newblock%
+  \usebibmacro{location+publisher+pages}%
+  \usebibmacro{finentry}}
 
 \DeclareBibliographyDriver{inbook}{%
-  \printnames{author}%
-  \setunit{\addcomma\addspace}%
-  \printfield{year}%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author+year}%
   \newunit\newblock%
+  \printfield{chapter}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{in:}%
+  \printnames{editor}%
+  \setunit{\addcomma\addspace}%
   \printfield{title}%
   \newunit\newblock%
-  \printlist{location}%
-  \setunit{\addcolon\addspace}%
-  \printlist{publisher}%
-  \finentry}
+  \usebibmacro{location+publisher+pages}%
+  \usebibmacro{finentry}}
+
+\def\articleorreport{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author+year}%
+  \newunit\newblock%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \iffieldundef{journaltitle}
+    {}
+    {\usebibmacro{in:}%
+      \printfield{journaltitle}}%
+  \setunit{\addcomma\addspace}%
+  \printfield{number}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{url+urldate}%
+  \setunit{\addcomma\addspace}%
+  \printfield{pages}%
+  \newunit\newblock%
+  \usebibmacro{finentry}}
+\DeclareBibliographyDriver{article}{\articleorreport}
+\DeclareBibliographyDriver{report}{\articleorreport}
+
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author+year}%
+  \newunit\newblock%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{url+urldate}%
+  \newunit\newblock%
+  \usebibmacro{location+publisher+pages}%
+  \usebibmacro{finentry}}
