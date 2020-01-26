@@ -87,10 +87,8 @@
 \wsb@DefineClassCommand{faculty}
 \wsb@DefineClassCommand{degree}
 \wsb@DefineClassCommand{albumnumber}
-\wsb@DefineClassCommand{supervisor}
 \wsb@DefineClassCommand{supervisorgenitive}
 \wsb@DefineClassCommand{wyear}
-\wsb@DefineClassCommand{universityaddress}
 
 \def\printtableofcontent{%
 	\clearpage
