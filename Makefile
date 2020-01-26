@@ -26,8 +26,8 @@ makelocalinstall:
 	PACKAGE_DIR="$$PATHTEXHOME/tex/latex/$(PACKAGE)/" ;\
 	\
 	echo "Creating folders if they don't exist" ;\
-	mkdir -p			"$$PACKAGE_DIR" ;\
-	cp $(CLASS).cls 	"$$PACKAGE_DIR" ;\
+	mkdir -p				"$$PACKAGE_DIR" ;\
+	cp $(CLASS).cls 		"$$PACKAGE_DIR" ;\
 	\
 	mkdir -p        		"$$PACKAGE_DIR/bbx/" ;\
 	cp $(BIBLIOGRAPHY).bbx 	"$$PACKAGE_DIR/bbx" ;\
