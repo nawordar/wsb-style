@@ -20,9 +20,6 @@ cd wsb-style
 make localinstall
 ```
 
-W wypadku braku programu git, można również pobrać repozytorium jako archiwum zip,
-rozpakować w dowolnym folderze i z niego uruchomić polecenie `make localinstall`.
-
 Systemy niekompatybilne ze standardem POSIX nie są i nigdy nie będą wspierane.
 
 ## Użycie
