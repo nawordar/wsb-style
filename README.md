@@ -1,9 +1,13 @@
 # wsb-style
-Klasa i styl bibliografii pracy inżynierskiej dla Wyższej Szkoły Bankowej w Gdańsku, kompatybilny z LuaTeX oraz XeTeX\
+Nieoficjalna klasa i styl bibliografii pracy inżynierskiej dla Wyższej Szkoły Bankowej w Gdańsku, kompatybilny z LuaTeX oraz XeTeX\
 [Przykładowy plik pdf wyrenderowany z użyciem tego stylu](https://github.com/nawordar/wsb-style/blob/master/sample/sample.pdf).
 
 ## Notice
-As of now, only Polish is supported. The standards for English language theses are not clearly defined yet.
+This is an unofficial LaTeX style, not endorsed in any way by Wyższa Szkoła Bankowa.
+Therefore, **compliance with official style guidelines IS NOT warranted**.
+If the pdf generated using this style is not compliant with the guidelines, please report the issue here.
+
+As of now, only Polish is supported. The style guidelines for English language theses are not clearly defined yet.
 
 ## Instalacja
 Do użycia tego stylu wymagany jest silnik LaTeXa LuaTeX lub XeTeX.\
