@@ -5,13 +5,17 @@ Nieoficjalna klasa i styl bibliografii pracy inżynierskiej dla Wyższej Szkoły
 ## Notice
 This is an unofficial LaTeX style, not endorsed in any way by Wyższa Szkoła Bankowa.
 Therefore, **compliance with official style guidelines IS NOT warranted**.
-If the pdf generated using this style is not compliant with the guidelines, please report the issue here.
+If the file generated using this style is not compliant with the guidelines, please report the issue here.
 
 As of now, only Polish is supported. The style guidelines for English language theses are not clearly defined yet.
 
 ## Instalacja
-Do użycia tego stylu wymagany jest silnik LaTeXa LuaTeX lub XeTeX.\
-Do instalacji tego stylu zalecany jest program GNU Make oraz git.
+Ten styl do działania wymaga silnika LaTeXa LuaTeX lub XeTeX. Do instalacji zalecane są programy GNU make oraz git.
+
+Na systemach bazowanych na Debianie, Ubuntu oraz pochodnych programy te można zainstalować za pomocą komendy:
+```shell
+sudo apt install make git
+```
 
 Aby zainstalować styl należy sklonować oraz uruchomić polecenie `make localinstall` wewnątrz sklonowanego folderu:
 ```shell
