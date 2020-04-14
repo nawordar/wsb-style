@@ -10,14 +10,15 @@ If the file generated using this style is not compliant with the guidelines, ple
 As of now, only Polish is supported. The style guidelines for English language theses are not clearly defined yet.
 
 ## Instalacja
-Ten styl do działania wymaga silnika LaTeXa LuaTeX lub XeTeX. Do instalacji zalecane są programy GNU make oraz git.
+Ten styl do działania wymaga silnika LaTeXa LuaTeX lub XeTeX.
+Do instalacji zalecane są programy GNU make oraz git, przy czym do komplilacji za pomocą make wymagany jest program kpsewhich zawarty w większości dystrybucji LaTeXa.
 
 Na systemach bazowanych na Debianie, Ubuntu oraz pochodnych programy te można zainstalować za pomocą komendy:
 ```shell
 sudo apt install make git
 ```
 
-Aby zainstalować styl należy sklonować oraz uruchomić polecenie `make localinstall` wewnątrz sklonowanego folderu:
+Aby zainstalować styl należy sklonować to repozytorium oraz uruchomić polecenie `make localinstall` wewnątrz sklonowanego folderu:
 ```shell
 git clone https://github.com/nawordar/wsb-style.git
 cd wsb-style
