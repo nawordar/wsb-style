@@ -1,21 +1,21 @@
 # This file is based on https://github.com/moewew/biblatex-trad/blob/master/Makefile
 
-# ===    Definitions   === #
+# ===    Definitions    === #
 .SILENT:
-SHELL		:= /bin/sh
+SHELL		    := /bin/sh
 
 # .PHONY: all clean
 
-# ==     File list      == #
-CLASS		= wsbthesis
-BIBLIOGRAPHY	= wsb
+# ===     File list     === #
+CLASS           =  wsbthesis
+BIBLIOGRAPHY	=  wsb
 
-# == Color definitions  == #
-PACKAGE		= wsb-style
-NO_COLOR    	= \033[0m
-OK_COLOR   	= \033[32m
-WARN_COLOR 	= \033[33m
-ERROR_COLOR 	= \033[31m
+# === Color definitions === #
+PACKAGE         =  wsb-style
+NO_COLOR    	=  \033[0m
+OK_COLOR        =  \033[32m
+WARN_COLOR      =  \033[33m
+ERROR_COLOR 	=  \033[31m
 
 # ===   Installation   === #
 localinstall:	makelocalinstall
@@ -38,4 +38,4 @@ makelocalinstall:
 	mkdir -p        		"$$PACKAGE_DIR/dbx/" ;\
 	cp $(BIBLIOGRAPHY).dbx 	"$$PACKAGE_DIR/dbx" ;\
 	\
-	echo "$(OK_COLOR)Installation finished$(NO_COLOR)" ;\
+	printf "$(OK_COLOR)Installation finished$(NO_COLOR)\n" ;\
