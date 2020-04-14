@@ -11,7 +11,19 @@ As of now, only Polish is supported. The style guidelines for English language t
 
 ## Instalacja
 Do użycia tego stylu wymagany jest silnik LaTeXa LuaTeX lub XeTeX.\
-Na systemach operacyjnych z zainstalowanym programem GNU Make, aby zainstalować wystarczy uruchomić polecenie `make localinstall`.
+Do instalacji tego stylu zalecany jest program GNU Make oraz git.
+
+Aby zainstalować styl należy sklonować oraz uruchomić polecenie `make localinstall` wewnątrz sklonowanego folderu:
+```shell
+git clone https://github.com/nawordar/wsb-style.git
+cd wsb-style
+make localinstall
+```
+
+W wypadku braku programu git, można również pobrać repozytorium jako archiwum zip,
+rozpakować w dowolnym folderze i z niego uruchomić polecenie `make localinstall`.
+
+Systemy niekompatybilne ze standardem POSIX nie są i nigdy nie będą wspierane.
 
 ## Użycie
 Aby użyć stylu w swojej pracy, najprostszym sposobem jest przekopiowanie pliku [sample/sample.tex](https://github.com/nawordar/wsb-style/blob/master/sample/sample.tex) oraz dostosowanie go do własnych potrzeb.
