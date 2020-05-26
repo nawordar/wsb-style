@@ -1,4 +1,4 @@
-\ProvidesFile{wsb.bbx}[2020/01/11 WSB bibliography style]
+\ProvidesFile{wsb.bbx}[2020/05/26 WSB bibliography style]
 
 
 \RequireBibliographyStyle{authortitle}
@@ -6,14 +6,50 @@
 \DefineBibliographyStrings{polish}{%
   % pages     = {ss.},
   andothers = {i~inn.},
-  number = {Nr},
-  urlseen = {dostęp},
+  number    = {Nr},
+  urlseen   = {dostęp},
 }
 
+% ----------------------------------------------------------
+% SORTING
+% ----------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Field formats and declarations
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% shorthand-name-title-year
+% This is a simple modification of the build-in nty sorting template.
+\DeclareSortingTemplate{snty}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \field{shorthand}
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort{
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort{
+    \field{volume}
+    \literal{0}
+  }
+}
+
+% ----------------------------------------------------------
+% FIELD FORMATS AND DECLARATIONS
+% ----------------------------------------------------------
+
 \DeclareFieldFormat*{title}{#1}
 \DeclareFieldFormat*{shorthand}{#1}
 \DeclareFieldFormat*{journaltitle}{#1}
@@ -25,11 +61,16 @@
 
 \DeclareFieldFormat{thiscite}{\mkpageprefix{#1}}
 
+% ----------------------------------------------------------
+% INTROCITE AND GENERAL BIBLIOGRAPHY FORMATTING
+% ----------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Introcite and general bibliography formatting
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\printname{\usebibmacro{name:family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+\def\printname{%
+  \usebibmacro{name:family}
+    {\namepartfamily}
+    {\namepartgiven}
+    {\namepartprefix}
+    {\namepartsuffix}}
 \DeclareNameFormat{labelname}{%
   % If there are more than three names, print only the first one
   \ifmorenames%
@@ -95,10 +136,12 @@
 \renewbibmacro{begentry}{%
   \usebibmacro{introcite:plain}}
 
+\renewbibmacro{finentry}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography driver definitions
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----------------------------------------------------------
+% BIBLIOGRAPHY DRIVER DEFINITIONS
+% ----------------------------------------------------------
+
 \newbibmacro*{location+publisher+pages}{%
   \printlist{location}%
   \setunit{\addcolon\addspace}%
