@@ -9,7 +9,7 @@
   style    = wsb,   % Ustaw styl bibliografii
   block    = space, % Zwiększ odstępy w bibliografii
   sortcites= true,  % Sortuj pozycje zamiast układać je w kolejności występowania
-  sorting  = nty,   % Name-title-year — Imiona-tytuł-rok
+  sorting  = snty,  % Shorthand-name-title-year — Skrócony tytuł-imiona-tytuł-rok
   maxnames = 5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
 ]{biblatex}
 \addbibresource{sample.bib}
@@ -76,7 +76,7 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
 
     \item Artykuł w czasopiśmie
           \begin{enumerate}
-              \item Artykuł nr 1 \autocite{zawila_2016}
+              \item Artykuł nr 1 \autocite{zawila-niedzwiecki_i_kisilowski_2016}
               \item Artykuł nr 2 \autocite{kisman_i_tasar_2014}
           \end{enumerate}
 
@@ -104,14 +104,15 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
 
     \item Akty prawne
           \begin{enumerate}
-            \item Akt nr 1 \autocite{dzu_2009_1_3}
-            \item Akt nr 2 \autocite{directive_2010_13_ue_1}
+            \item Akt nr 1 \autocite{dzu_2009_nr1_poz3}
+            \item Akt nr 2 \autocite{directive_2010/13/ue_art1}
           \end{enumerate}
 \end{enumerate}
 
 \printbibliography[heading=bibintoc]
 
 \end{document}
+
 
 %%% Local Variables:
 %%% mode: latex
