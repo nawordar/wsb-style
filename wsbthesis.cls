@@ -60,6 +60,10 @@
 % \setmonofont{TeX Gyre Cursor}
 % \setmainfont[Ligatures=TeX]{Times New Roman}
 
+% Format URL as sans
+\RequirePackage{hyperref}
+\renewcommand\UrlFont{\rmfamily}
+
 % Set listings font
 \RequirePackage{listings}
 \lstset{basicstyle=\footnotesize\fontspec{Cascadia Code}}
