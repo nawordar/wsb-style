@@ -2,25 +2,22 @@
 
 
 \usepackage[english, polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{csquotes}
-
-% Paczka poprawiająca łamanie tekstu
-\usepackage{microtype}
 
 % Ustawienia dotyczące bibliografii
 \usepackage[
-	style=wsb,      % Ustaw styl bibliografii
-	block=space,    % Zwiększ odstępy w bibliografii
-	sortcites=true, % Sortuj pozycje zamiast układać je w kolejności występowania
-	sorting=nty,    % Name-title-year — Imiona-tytuł-rok
-	maxnames=5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
+  style=wsb,      % Ustaw styl bibliografii
+  block=space,    % Zwiększ odstępy w bibliografii
+  sortcites=true, % Sortuj pozycje zamiast układać je w kolejności występowania
+  sorting=nty,    % Name-title-year — Imiona-tytuł-rok
+  maxnames=5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
 ]{biblatex}
 \addbibresource{sample.bib}
 
 % Paczka do generowania przykładowego tekstu
 \usepackage{bredzenie}
-
-\usepackage[prevent-all]{widows-and-orphans}
 
 % Dodaj wsparcie hiperlinków dla generowanego pdfa
 \usepackage{bookmark}
@@ -53,14 +50,14 @@
 % Treść pracy
 %%%%%%%%%%%%%%
 \chapter{Przykładowy rozdział}
-\bredzenie{1-5}
+\bredzenie{1-5}  % chktex 8
 \section{Przykładowy podrozdział}
-\bredzenie{6-10}
+\bredzenie{6-10} % chktex 8
 
 \chapter{Font o stałej szerokości}
 Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy wyrównać do lewej strony.
 \begin{flushleft}
-    \ttfamily\bredzenie{101-103}
+    \ttfamily\bredzenie{101-103} % chktex 8
 \end{flushleft}
 
 \chapter{Cytowanie}
@@ -114,3 +111,11 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
 \printbibliography[heading=bibintoc]
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% LocalWords:  maxnames hiperlinków gpw hidelinks pdfa biblatex Radowida leszek
+% LocalWords:  bibintoc beauchamp rosenberg
