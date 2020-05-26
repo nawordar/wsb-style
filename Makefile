@@ -22,7 +22,7 @@ localinstall:   makelocalinstall
 
 makelocalinstall:
 	echo "Installing in the local tree"                                             ;\
-	if PATHTEXHOME=`kpsewhich --var-value=TEXMFHOME`; then                           \
+	if ! PATHTEXHOME=`kpsewhich --var-value=TEXMFHOME`; then                         \
 		printf '$(ERROR_COLOR)No local texmf tree found --- '                       ;\
 		printf '"kpsewhich --var-value=TEXMFHOME" returned '                        ;\
 		printf 'a non-zero value.$(NO_COLOR)\n'                                     ;\
