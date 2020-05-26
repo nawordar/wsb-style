@@ -2,19 +2,20 @@
 
 
 \usepackage[english, polish]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage{csquotes}
 
 % Ustawienia dotyczące bibliografii
 \usepackage[
-  style=wsb,      % Ustaw styl bibliografii
-  block=space,    % Zwiększ odstępy w bibliografii
-  sortcites=true, % Sortuj pozycje zamiast układać je w kolejności występowania
-  sorting=nty,    % Name-title-year — Imiona-tytuł-rok
-  maxnames=5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
+  style    = wsb,   % Ustaw styl bibliografii
+  block    = space, % Zwiększ odstępy w bibliografii
+  sortcites= true,  % Sortuj pozycje zamiast układać je w kolejności występowania
+  sorting  = nty,   % Name-title-year — Imiona-tytuł-rok
+  maxnames = 5,     % Nie wypisuj wszystkich autorów, jeśli jest ich więcej niż 5
 ]{biblatex}
 \addbibresource{sample.bib}
+
+% Popraw łamanie adresów w bibliografii
+\usepackage{xurl}
 
 % Paczka do generowania przykładowego tekstu
 \usepackage{bredzenie}
@@ -67,7 +68,7 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
           \begin{enumerate}
               \item Książka nr 1 \autocite{kosieradzka_2012}
               \item Książka nr 2 \autocite{szoltysek_2016}
-              \item Książka nr 3 \autocite{mateos_rosenberg_2011}
+              \item Książka nr 3 \autocite{mateos_i_rosenberg_2011}
               \item Książka nr 4 \autocite{banaszak_2016}
           \end{enumerate}
 
@@ -76,7 +77,7 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
     \item Artykuł w czasopiśmie
           \begin{enumerate}
               \item Artykuł nr 1 \autocite{zawila_2016}
-              \item Artykuł nr 2 \autocite{kisman_2014}
+              \item Artykuł nr 2 \autocite{kisman_i_tasar_2014}
           \end{enumerate}
 
     \item Artykuł z czasopisma dostępnego przez sieć Internet \autocite{kompa_2016}
@@ -89,8 +90,8 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
 
     \item Artykuły i raporty publikowane w sieci Internet, w których nie ma autora (autorem jest instytucja publikująca)
           \begin{enumerate}
-              \item Artykuł nr 1 \autocite{gus_2016}
-              \item Artykuł nr 2 \autocite{gus_2016a}
+              \item Artykuł nr 1 \autocite{gus_2016a}
+              \item Artykuł nr 2 \autocite{gus_2016b}
           \end{enumerate}
 
     \item Źródła internetowe (blogi, video, strony WWW)
@@ -104,7 +105,7 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
     \item Akty prawne
           \begin{enumerate}
             \item Akt nr 1 \autocite{dzu_2009_1_3}
-            \item Akt nr 2 \autocite{2010_13_ue_1}
+            \item Akt nr 2 \autocite{directive_2010_13_ue_1}
           \end{enumerate}
 \end{enumerate}
 
@@ -116,6 +117,3 @@ Tekst o stałej szerokości nie jest prawidłowo justowany. Taki tekst należy w
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
-
-% LocalWords:  maxnames hiperlinków gpw hidelinks pdfa biblatex Radowida leszek
-% LocalWords:  bibintoc beauchamp rosenberg
