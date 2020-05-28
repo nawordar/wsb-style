@@ -91,7 +91,7 @@
 \wsb@DefineClassCommand{faculty}
 \wsb@DefineClassCommand{degree}
 \wsb@DefineClassCommand{albumnumber}
-\wsb@DefineClassCommand{supervisorgenitive}
+\wsb@DefineClassCommand{supervisor}
 \wsb@DefineClassCommand{wyear}
 
 \def\printtableofcontent{%
@@ -147,7 +147,7 @@
 		\hspace*{0.5\textwidth}
 		\pbox{\textwidth}{\setstretch{1.5}%
 			Praca napisana pod kierunkiem \\
-			\wsb@supervisorgenitive
+			\wsb@supervisor
 		}
 		\vspace{2.5cm}
 
@@ -159,3 +159,5 @@
 }
 
 \makeatother
+
+% LocalWords:  albumnumber wyear pbox setspace wsb DefineClassCommand calc
