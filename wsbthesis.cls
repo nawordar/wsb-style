@@ -57,8 +57,6 @@
 % Set main font
 \RequirePackage{fontspec}
 \setmainfont[Ligatures=TeX]{TeX Gyre Termes}
-% \setmonofont{TeX Gyre Cursor}
-% \setmainfont[Ligatures=TeX]{Times New Roman}
 
 % Format URL as sans
 \RequirePackage{hyperref}
@@ -133,10 +131,10 @@
    \end{center}
    \vspace{1.2cm}
 
-    \begin{center}
-        {\fontsize{14}{20}\selectfont%
-        Praca inżynierska \\
-        na kierunku \wsb@degree}
+   \begin{center}
+     {\fontsize{14}{20}\selectfont%
+       Praca inżynierska \\
+       na kierunku \wsb@degree}
     \end{center}
     \vspace{2.5cm}
 
@@ -144,7 +142,7 @@
     \pbox{\textwidth}{\setstretch{1.5}%
       Praca napisana pod kierunkiem \\
       \wsb@supervisor%
-	}
+    }
     \vspace{2.5cm}
 
     \begin{center}
@@ -154,3 +152,8 @@
 }
 
 \makeatother
+
+% Local Variables:
+% indent-tabs-mode: nil
+% tab-width: 2
+% End:
