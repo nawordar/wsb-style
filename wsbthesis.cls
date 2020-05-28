@@ -64,10 +64,6 @@
 \RequirePackage{hyperref}
 \renewcommand\UrlFont{\rmfamily}
 
-% Set listings font
-\RequirePackage{listings}
-\lstset{basicstyle=\footnotesize\fontspec{Cascadia Code}}
-
 % Format chapter and section title – Source: https://tex.stackexchange.com/a/1477/175096
 \RequirePackage[compact]{titlesec}
 \titleformat{\chapter}
