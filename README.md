@@ -35,5 +35,5 @@ Klasa `wsbthesis` dostarcza kilka komend do wygenerowania strony tytułowej:
 - `\faculty{}` — wydział uczelni
 - `\degree{}` — kierunek studiów
 - `\albumnumber{}` — numer albumu
-- `\supervisorgenitive{}` — imię i nazwisko promotora w dopełniaczu, np. _dr. inż. Jana Kowalskiego_
+- `\supervisor{}` — imię i nazwisko promotora w dopełniaczu, np. _dr. inż. Jana Kowalskiego_
 - `\wyear{}` — Rok napisania pracy
