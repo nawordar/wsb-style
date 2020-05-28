@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wsbthesis}[2019/11/02 WSB thesis style class]
+\ProvidesClass{wsbthesis}[2020/05/28 WSB thesis style class]
 
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{report}}
 
@@ -157,3 +157,4 @@
 \makeatother
 
 % LocalWords:  albumnumber wyear pbox setspace wsb DefineClassCommand calc
+% LocalWords:  wsbthesis
