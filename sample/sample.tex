@@ -1,4 +1,8 @@
-\documentclass[]{wsbthesis}
+\documentclass[
+  tocchapter,       % Drukuj "Rozdział" w spisie treści
+  tocchapterdots,   % Drukuj kropki przy rozdziałach w spisie treści
+  sectionnumberdot, % Drukuj kropki po numerach rozdziałów
+]{wsbthesis}
 
 
 \usepackage[english, polish]{babel}
@@ -38,14 +42,17 @@
 
 \begin{document}
 
-% Jeśli adresy url nie mają być drukowane w foncie monospace
-% \urlstyle{rm}
-
 \maketitle{}
 \printtableofcontent{}
 
+\begin{introduction}
+Wstęp, w~odróżnieniu do innych rozdziałów, nie jest numerowany.
+
+\bredzenie{11-12} % chktex 8
+\end{introduction}
+
 % Numeruj strony od tego miejsca
-\setcounter{page}{1}
+% \setcounter{page}{1}
 
 %%%%%%%%%%%%%%
 % Treść pracy

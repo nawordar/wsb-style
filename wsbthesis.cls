@@ -1,7 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wsbthesis}[2020/05/28 WSB thesis style class]
+\ProvidesClass{wsbthesis}[2020/06/04 WSB thesis style class]
+
+\RequirePackage{etoolbox}
+
+\makeatletter
+
+\newcommand*{\OptionSwitch}[1]{%
+  \newtoggle{#1}
+  \DeclareOption{#1}{\toggletrue{#1}}
+}
 
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{report}}
+
+\OptionSwitch{tocchapter}
+\OptionSwitch{tocchapterdots}
+\OptionSwitch{sectionnumberdot}
 
 \ProcessOptions\relax
 
@@ -23,36 +36,45 @@
 % Set interline to 1.5
 \renewcommand{\baselinestretch}{1.5}
 
-% Move page number to the right side – Source: https://tex.stackexchange.com/a/8847
+% Move page number to the right side
+% Sources:
+% https://tex.stackexchange.com/a/8847 and https://tex.stackexchange.com/a/153176
 \RequirePackage{fancyhdr}
-\fancyhf{} % clear all header and footers
-\renewcommand{\headrulewidth}{0pt} % remove the header rule
-\rfoot{\thepage}
-
-% Make it work for titlepage and chapter beginnings – Source: https://tex.stackexchange.com/a/153176
 \fancypagestyle{plain}{%
   \renewcommand{\headrulewidth}{0pt}%
   \fancyhf{}%
   \fancyfoot[R]{\thepage}%
 }
+\pagestyle{plain}
 
-% Set TOC style
-% \RequirePackage{tocloft}
-% \RequirePackage{calc}
-
-% Force dots in TOC – Source: https://tex.stackexchange.com/a/53901
-% \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-% \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\RequirePackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}
 
 % Add "Rozdział" before chapter name – Source https://tex.stackexchange.com/a/3401
-% \renewcommand{\cftchappresnum}{\chaptername\space}
-% \setlength{\cftchapnumwidth}{\widthof{\textbf{Chapter 9}}}
-% \makeatletter
-% \g@addto@macro\appendix{%
-%   \addtocontents{toc}{%
-%     \protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}%
-%   }%
-% }
+\iftoggle{tocchapter}{%
+  \RequirePackage{calc}
+  \renewcommand{\cftchappresnum}{\chaptername\space}
+  \setlength{\cftchapnumwidth}{\widthof{\textbf{Chapter 99}}}
+  \g@addto@macro\appendix{%
+    \addtocontents{toc}{%
+      \protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}%
+    }%
+  }
+}
+
+% Force dots in TOC – Source: https://tex.stackexchange.com/a/53901
+\iftoggle{tocchapterdots}{%
+  \renewcommand{\cftchapleader}{\bfseries\cftdotfill{\cftdotsep}}
+  \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+}{}
+
+% Add dot after chapter/section number
+\iftoggle{sectionnumberdot}{%
+  \renewcommand{\thechapter}{\arabic{chapter}.}
+  \renewcommand{\thesection}{\thechapter\arabic{section}.}
+  \renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+}
+
 
 % Set main font
 \RequirePackage{fontspec}
@@ -74,6 +96,7 @@
   {\fontsize{13}{15}\selectfont\bfseries}
   {\thesubsection}{10pt}{\fontsize{13}{15}\selectfont}
 
+
 % Define class commands
 \def\wsb@DefineClassCommand#1{%
   \expandafter\def\csname#1\endcsname##1{%
@@ -88,13 +111,47 @@
 \wsb@DefineClassCommand{supervisor}
 \wsb@DefineClassCommand{wyear}
 
+
 \def\printtableofcontent{%
-  \clearpage
+  \clearpage%
   \hypertarget{toc}{} % set the hypertarget
   \bookmark[dest=toc,level=chapter]{\contentsname} % add the bookmark
-  \tableofcontents
-  \thispagestyle{empty}\pagestyle{fancy}
-  \newpage
+  \tableofcontents%
+  \thispagestyle{empty}
+  \newpage%
+}
+
+% A modified \chapter command
+\newcommand*{\@introductiontitlename}{Wstęp}
+\newcommand*{\@makeintroductionhead}{%
+  \vspace*{50\p@}
+  {%
+    \parindent\z@%
+    \raggedright\normalfont%
+    \interlinepenalty\@M%
+    \fontsize{14}{16}\selectfont\bfseries \@introductiontitlename\par%
+    \nobreak{}
+    \vskip40\p@%
+  }
+}
+\newcommand*{\@introduction}{%
+  \addcontentsline{toc}{chapter}{\@introductiontitlename}
+  \if@twocolumn%
+    \@topnewpage [\@makeintroductionhead]
+  \else
+    \@makeintroductionhead\@afterheading%
+  \fi
+}
+\newenvironment{introduction}{%
+  \if@openright%
+    \cleardoublepage%
+  \else
+    \clearpage%
+  \fi
+  \pagestyle{empty}\global\@topnum\z@ \@afterindentfalse%
+  \@introduction%
+}{%
+  \clearpage\pagestyle{fancy}
 }
 
 % Provides \thetitle, \theauthor etc.
@@ -149,7 +206,10 @@
       Gdynia \wsb@wyear
     \end{center}}
   \thispagestyle{empty}
+  \setcounter{page}{0}
 }
+
+\undef{\OptionSwitch}
 
 \makeatother
 
