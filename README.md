@@ -30,6 +30,11 @@ Systemy niekompatybilne ze standardem POSIX nie są i nigdy nie będą wspierane
 ## Użycie
 Aby użyć stylu w swojej pracy, najprostszym sposobem jest przekopiowanie pliku [sample/sample.tex](https://github.com/nawordar/wsb-style/blob/master/sample/sample.tex) oraz dostosowanie go do własnych potrzeb.
 
+### Opcje paczki
+- `tocchapter` — Dodaje "Rozdział" przed numerem rozdziału w spisie treści;
+- `tocchapterdots` — Dodaje kropki między nazwą rozdziału a numerem w spisie treści;
+- `sectionnumberdot` — Dodaje kropkę po numerze sekcji.
+
 ### Komendy
 Klasa `wsbthesis` dostarcza kilka komend do wygenerowania strony tytułowej:
 - `\faculty{}` — wydział uczelni
@@ -37,3 +42,7 @@ Klasa `wsbthesis` dostarcza kilka komend do wygenerowania strony tytułowej:
 - `\albumnumber{}` — numer albumu
 - `\supervisor{}` — imię i nazwisko promotora w dopełniaczu, np. _dr. inż. Jana Kowalskiego_
 - `\wyear{}` — Rok napisania pracy
+
+### Środowiska
+Na chwilę obecną klasa dostarcza jedno środowisko — `introduction`. Jest ono
+bazowane na makrze `\chapter*`, ale nie są w nim drukowane numery stron.
