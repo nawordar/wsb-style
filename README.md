@@ -3,6 +3,8 @@ Nieoficjalna klasa i styl bibliografii pracy inżynierskiej dla Wyższej Szkoły
 [Przykładowy plik pdf wyrenderowany z użyciem tego stylu](https://github.com/nawordar/wsb-style/blob/master/sample/sample.pdf).
 
 ## Notice
+The repository has been moved to https://codeberg.org/cdrozak/wsb-style.
+
 This is an unofficial LaTeX style, not endorsed in any way by Wyższa Szkoła Bankowa.
 Therefore, **compliance with official style guidelines IS NOT warranted**.
 If the file generated using this style is not compliant with the guidelines, please report the issue here.
